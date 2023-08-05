@@ -11,6 +11,7 @@ app.post('/', (req, res)=>{
 })
 
 // const userRouter = require('./routes/users')
-const shopify = require('./routes/shopify-webhook')
-app.use('/shopify', shopify)
+// const shopify = require('./routes/shopify-webhook')
+// app.use('/shopify', shopify)
+
 app.listen(3001)
