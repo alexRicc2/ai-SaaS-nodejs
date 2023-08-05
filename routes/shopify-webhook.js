@@ -1,6 +1,5 @@
 const express = require("express");
 const axios = require("axios");
-const bodyParser = require("body-parser");
 
 const router = express.Router();
 
@@ -14,7 +13,6 @@ const shop_domain = "primeira-loja-com-next.myshopify.com";
 const SHOPIFY_ADMIN_ENDPOINT = `https://${shop_domain}/admin/api/2023-04/pages/${pageId}/metafields/${metafieldId}.json`;
 
 router.post("/", async (req, res) => {
-
   try {
     const response = await axios.get(SHOPIFY_ADMIN_ENDPOINT, { headers });
     if (!response.data?.metafield?.value) {
