@@ -12,17 +12,14 @@ const pageId = 105751544096;
 const metafieldId = 29046030270752;
 const shop_domain = "primeira-loja-com-next.myshopify.com";
 const SHOPIFY_ADMIN_ENDPOINT = `https://${shop_domain}/admin/api/2023-04/pages/${pageId}/metafields/${metafieldId}.json`;
-console.log("domain", SHOPIFY_ADMIN_ENDPOINT);
 
 router.post("/", async (req, res) => {
-  console.log("req", req.body);
 
   try {
     const response = await axios.get(SHOPIFY_ADMIN_ENDPOINT, { headers });
-
     if (!response.data?.metafield?.value) {
       res
-        .status(200)
+        .status(200)  
         .json({ Message: "Items sold metafield quantity not found" });
       return;
     }
@@ -32,16 +29,16 @@ router.post("/", async (req, res) => {
     if (!bodyObject.line_items) {
       res
         .status(200)
-        .json({ Message: "Body post request with lineItems in it" });
+        .json({ Message: "Body post request with no lineItems in it" });
       return;
     }
 
-    const CURRENT_TOTAL_TEMS_SOLD = response.data.metafield.value;
+    const CURRENT_TOTAL_ITEMS_SOLD = response.data.metafield.value;
     const { line_items } = bodyObject;
 
     const NEW_TOTAL_ITEMS_SOLD = line_items.reduce(
       (accumulator, currentItem) => accumulator + currentItem.quantity,
-      CURRENT_TOTAL_TEMS_SOLD
+      CURRENT_TOTAL_ITEMS_SOLD
     );
     const UPDATED_METAFIELD = {
       metafield: {
