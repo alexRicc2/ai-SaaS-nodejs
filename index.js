@@ -77,4 +77,4 @@ app.post('/', (req, res)=>{
 // const shopify = require('./routes/shopify-webhook')
 // app.use('/shopify', shopify)
 
-app.listen(3001)
+module.exports = app
